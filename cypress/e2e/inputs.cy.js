@@ -67,19 +67,19 @@ describe('Input Forms Tests', () => {
   it('Check selection all dropdown options', () => {
     // we will provide out data through fixtures folder as JSON object, then use that data to verify select values
     cy.fixture('departments').then((departments) => {
-        //Get all options in the menu, then iterate thru these options one by one
-        cy.get('select[name="department"] > option').each((option, index) => {
-            //get each option's text
-            const optionText = option.text();
-            //cy.log(optionText);
-            //cy.log(index);
-            //cy.log(departments[index]);
+      // Get all options in the menu, then iterate thru these options one by one
+      cy.get('select[name="department"] > option').each((option, index) => {
+        // get each option's text
+        const optionText = option.text();
+        // cy.log(optionText);
+        // cy.log(index);
+        // cy.log(departments[index]);
 
-            cy.get('select[name="department"]').select(optionText)
-            .should('have.value',option.val())
-            .contains(departments[index]);
-
-        })
-    })
+        cy.get('select[name="department"]')
+          .select(optionText)
+          .should('have.value', option.val())
+          .contains(departments[index]);
+      });
+    });
   });
 });
